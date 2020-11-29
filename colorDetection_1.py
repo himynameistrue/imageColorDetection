@@ -47,11 +47,13 @@ def main():
                     
         for root, dirs, files in os.walk(path + "/"): # from your argv[1]
             for f in files:
-                if((os.path.isdir(f) is False) and (f != ".DS_Store") and ("png" in f)):    #take only png images
+                if((os.path.isdir(f) is False) and (f != ".DS_Store") and (("png" in f) or ("jpg" in f) or ("PNG" in f) or ("JPG" in f))):    #take only png images
                     filename = join(root, f)
                     colorName_str = ""
+                    print(filename)
                     colors = colorz(filename, n=n)  
                     colorList = list(colors)    #get list of colors detected
+                    print (colorList)
                     for c in colorList:         #for each hex color get the name
                         c = c.lstrip('#')
                         c_rgb = tuple(int(c[i:i+2], 16) for i in (0, 2, 4))     #convertion hex to rgb
